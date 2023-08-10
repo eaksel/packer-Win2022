@@ -8,7 +8,8 @@
         "numvcpus": "2",
         "vm_name": "Win2022_20324",
         "winrm_password" : "packer",
-        "winrm_username" : "Administrator"
+        "winrm_username" : "Administrator",
+        "virtio_iso_path" : "virtio-win-0.1.229.iso"
     },
     "builders": [
         {
@@ -66,6 +67,40 @@
                 ["modifyvm", "{{.Name}}", "--firmware", "EFI"],
                 ["storageattach", "{{.Name}}", "--storagectl", "SATA Controller", "--type", "dvddrive", "--port", "3", "--medium", "./scripts/uefi/gui/autounattend.iso"]
             ]
+        },
+        {
+            "type": "qemu",
+            "machine_type": "q35",
+            "efi_boot": true,
+            "efi_firmware_vars": "scripts/uefi/OVMF_VARS.fd",
+            "boot_command": [
+                "<wait10>",
+                "reset<enter>",
+                "<wait5>",
+                "<spacebar>"
+            ],
+            "memory": "{{user `memsize`}}",
+            "cpus": "{{user `numvcpus`}}",
+            "vm_name": "{{user `vm_name`}}.qcow2",
+            "iso_url": "{{user `iso_url`}}",
+            "iso_checksum": "{{user `iso_checksum`}}",
+            "headless": true,
+            "boot_wait": "{{user `boot_wait`}}",
+            "disk_size": "{{user `disk_size`}}",
+            "disk_interface": "virtio-scsi",
+            "disk_discard": "unmap",
+            "disk_detect_zeroes": "unmap",
+            "format": "qcow2",
+            "communicator":"winrm",
+            "winrm_username": "{{user `winrm_username`}}",
+            "winrm_password": "{{user `winrm_password`}}",
+            "winrm_use_ssl": true,
+            "winrm_insecure": true,
+            "winrm_timeout": "4h",
+            "qemuargs": [ [ "-cdrom", "{{user `virtio_iso_path`}}" ] ],
+            "floppy_files": ["scripts/uefi/gui/autounattend.xml"],
+            "shutdown_command": "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\"",
+            "shutdown_timeout": "30m"
         }
     ],
     "provisioners": [
