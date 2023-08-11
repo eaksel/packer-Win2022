@@ -3,7 +3,7 @@
 ## What is packer-Win2022 ?
 
 packer-Win2022 is a set of configuration files used to build automated Windows Server 2022 virtual machine images using [Packer](https://www.packer.io/).
-This Packer configuration file allows you to build images for VMware Workstation and Oracle VM VirtualBox.
+This Packer configuration file allows you to build images for VMware Workstation, Oracle VM VirtualBox and QEMU (KVM).
 
 ## Prerequisites
 
@@ -35,6 +35,17 @@ packer build -only=virtualbox-iso win2022-gui.json #Windows Server 2022 w/ GUI
 packer build -only=virtualbox-iso win2022-core.json #Windows Server 2022 Core
 packer build -only=virtualbox-iso win2022-gui_uefi.json #Windows Server 2022 w/ GUI using UEFI
 packer build -only=virtualbox-iso win2022-core_uefi.json #Windows Server 2022 Core using UEFI
+```
+
+To create a Windows Server 2022 VM image using QEMU (KVM) use the following commands:
+
+```sh
+cd packer-Win2022
+wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.229-1/virtio-win-0.1.229.iso
+packer build -only=qemu win2022-gui.json #Windows Server 2022 w/ GUI
+packer build -only=qemu win2022-core.json #Windows Server 2022 Core
+packer build -only=qemu win2022-gui_uefi.json #Windows Server 2022 w/ GUI using UEFI
+packer build -only=qemu win2022-core_uefi.json #Windows Server 2022 Core using UEFI
 ```
 
 *If you omit the keyword "-only=" images for both Workstation and Virtualbox will be created.*
