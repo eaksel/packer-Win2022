@@ -1,3 +1,7 @@
+# Add ansible local user - group Admionistrator
+New-LocalUser "ansible" -Password $Password -FullName "ansible" -Description "Administrator with deploiment"
+# Add Group Member Administrators
+Add-LocalGroupMember -Group "Administrators" -Member "ansible"
 # Remove Desktop from This PC
 Remove-Item "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}"
 Remove-Item "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}"

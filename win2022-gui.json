@@ -4,9 +4,9 @@
         "disk_size": "40960",
         "iso_checksum": "4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852",
         "iso_url": "https://software-download.microsoft.com/download/sg/20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
-        "memsize": "2048",
-        "numvcpus": "2",
-        "vm_name": "Win2022_20324",
+        "memsize": "8192",
+        "numvcpus": "4",
+        "vm_name": "packer-2024",
         "winrm_password" : "packer",
         "winrm_username" : "Administrator",
         "virtio_iso_path" : "virtio-win-0.1.229.iso"

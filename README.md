@@ -20,21 +20,21 @@ Commands to create an automated VM image:
 To create a Windows Server 2022 VM image using VMware Workstation use the following commands:
 
 ```sh
-cd c:\packer-Win2022
+cd \packer-Win2022
 packer build -only=vmware-iso win2022-gui.json #Windows Server 2022 w/ GUI
-packer build -only=vmware-iso win2022-core.json #Windows Server 2022 Core
-packer build -only=vmware-iso win2022-gui_uefi.json #Windows Server 2022 w/ GUI using UEFI
-packer build -only=vmware-iso win2022-core_uefi.json #Windows Server 2022 Core using UEFI
+#packer build -only=vmware-iso win2022-core.json #Windows Server 2022 Core
+#packer build -only=vmware-iso win2022-gui_uefi.json #Windows Server 2022 w/ GUI using UEFI
+#packer build -only=vmware-iso win2022-core_uefi.json #Windows Server 2022 Core using UEFI
 ```
 
 To create a Windows Server 2022 VM image using Oracle VM VirtualBox use the following commands:
 
 ```sh
-cd c:\packer-Win2022
+cd \packer-Win2022
 packer build -only=virtualbox-iso win2022-gui.json #Windows Server 2022 w/ GUI
-packer build -only=virtualbox-iso win2022-core.json #Windows Server 2022 Core
+#packer build -only=virtualbox-iso win2022-core.json #Windows Server 2022 Core
 packer build -only=virtualbox-iso win2022-gui_uefi.json #Windows Server 2022 w/ GUI using UEFI
-packer build -only=virtualbox-iso win2022-core_uefi.json #Windows Server 2022 Core using UEFI
+#packer build -only=virtualbox-iso win2022-core_uefi.json #Windows Server 2022 Core using UEFI
 ```
 
 To create a Windows Server 2022 VM image using QEMU (KVM) use the following commands:
@@ -43,9 +43,9 @@ To create a Windows Server 2022 VM image using QEMU (KVM) use the following comm
 cd packer-Win2022
 wget https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.229-1/virtio-win-0.1.229.iso
 packer build -only=qemu win2022-gui.json #Windows Server 2022 w/ GUI
-packer build -only=qemu win2022-core.json #Windows Server 2022 Core
+#packer build -only=qemu win2022-core.json #Windows Server 2022 Core
 packer build -only=qemu win2022-gui_uefi.json #Windows Server 2022 w/ GUI using UEFI
-packer build -only=qemu win2022-core_uefi.json #Windows Server 2022 Core using UEFI
+#packer build -only=qemu win2022-core_uefi.json #Windows Server 2022 Core using UEFI
 ```
 
 *If you omit the keyword "-only=" images for both Workstation and Virtualbox will be created.*
